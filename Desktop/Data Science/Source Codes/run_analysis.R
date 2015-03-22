@@ -73,5 +73,8 @@ run_analysis <- function {
   
   ## Create a independent tidy data set with average of each variable for each
   ## activity and each subject
-  
+  extractedDataSet2<-melt(extractedDataSet,id=c("Subject.ID","Activity"))
+  extractedDataSet3<-dcast(extractedDataSet2,Subject.ID+Activity ~ variable, mean)
+  newfile<-file.path("./data","cleanDataSet.txt")
+  write.table(extractedDataSet3,clean.file.name,row.names=F,quote=F)
 }
